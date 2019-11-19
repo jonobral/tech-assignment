@@ -1,6 +1,7 @@
 import { 
     DELETE_SELECTION,
-    SHOW_SELECTIONS
+    SHOW_SELECTIONS,
+    SORT_SELECTIONS
 } from './types';
 
 export const showSelections = (color) => ({
@@ -13,3 +14,6 @@ export const deleteSelection = (color) => ({
     color
 });
 
+export const sortSelections = () => ({
+    type: SORT_SELECTIONS
+});

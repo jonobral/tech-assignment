@@ -1,11 +1,12 @@
 import {
 	SET_INPUT_CONTENT,
 	SET_INPUT_REF,
-	SET_INPUT_SELECTIONS
+	SET_INPUT_SELECTIONS,
+	CLEAR_TEXT_AND_SELECTIONS
 } from '../actions/types';
 
 const initialState = {
-	content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially',
+	content: '',
 	selections: []
 };
 
@@ -28,12 +29,19 @@ export default function inputBox(state = initialState, action) {
 				selections: [
 					...state.selections,
 					{
-						color: action.color, 
+						color: action.color,
+						colorSeq: action.colorSeq,
 						start: action.start, 
 						end: action.end
 					}
 				],
 				inputRef: null
+			};
+		case CLEAR_TEXT_AND_SELECTIONS:
+			return {
+				...state,
+				content: '',
+				selections: []
 			};
 		default:
 				return state;

@@ -1,10 +1,12 @@
 import {
 	DELETE_SELECTION,
-	SHOW_SELECTIONS
+	SHOW_SELECTIONS,
+	SORT_SELECTIONS
 } from '../actions/types';
 
 const initialState = {
-	colors: []
+	colors: [],
+	sortByColors: false
 };
 
 export default function resultBox(state = initialState, action) {
@@ -24,6 +26,11 @@ export default function resultBox(state = initialState, action) {
 					...state.colors.filter(color => color !== action.color).map(color => color)
 				]
 			};
+		case SORT_SELECTIONS:
+			return {
+				...state,
+				sortByColors: !state.sortByColors
+			}
 		default:
 				return state;
 	}

@@ -17,7 +17,7 @@ function App() {
         <Highlighter componentType="highlighter" text="Press a color to hightlight the selected text below"/>
         <InputBox />
         <Filter componentType="filter" text="Click to filter the text highlighted above" />
-        <ResultBox outputText=""/>
+        <ResultBox />
       </main>
       <footer className="App-footer">
         <p>

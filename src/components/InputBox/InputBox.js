@@ -23,50 +23,55 @@ function InputBox(props) {
     // Dispatch an action to save the text in the store
     props.actions.setInputContent(e.target.value);
   }
+
+  const handleScroll = () => {
+    var scrollTop = inputRef.current.scrollTop;
+    highlightsRef.current.scrollTo(0, scrollTop);
+  }
   
   useEffect(() => {
     // This will run after initial render has been completed
     const processFormat = () => {
-      // If there are no selections yet, exit
-      if (props.selections.length === 0) return;
+      
       let newContent = '';
-      // Sort the list of selections to get them in order
-      const sortedSelections = props.selections.sort((a, b) => (a.start > b.start) ? 1 : -1);
-      // Start of formatted content
-      let start = 0;
-      if (sortedSelections.length > 0) {
-        start = sortedSelections[0].start;
-        newContent = props.inputContent.substring(0, start);
-      }
-      // Handling formatted content
-      sortedSelections.forEach((element, index) => {
-        newContent += `<span class=InputBox-${element.color}>${props.inputContent.substring(element.start, element.end)}</span>`;
-  
-        if (sortedSelections[index + 1]) {
-          // Getting next non-formatted block until next selection
-          newContent += props.inputContent.substring(element.end, sortedSelections[index + 1].start);
+
+      if (props.selections.length > 0) {
+        // Sort the list of selections to get them in order
+        const sortedSelections = props.selections.sort((a, b) => (a.start > b.start) ? 1 : -1);
+        // Start of formatted content
+        let start = 0;
+        if (sortedSelections.length > 0) {
+          start = sortedSelections[0].start;
+          newContent = props.inputContent.substring(0, start);
         }
-  
-      });
-  
-      // End of formatted content
-      if (sortedSelections.length > 0) {
-        newContent += props.inputContent.substring(sortedSelections[sortedSelections.length - 1].end);
+        // Handling formatted content
+        sortedSelections.forEach((element, index) => {
+          newContent += `<span class=InputBox-${element.color}>${props.inputContent.substring(element.start, element.end)}</span>`;
+          if (sortedSelections[index + 1]) {
+            // Getting next non-formatted block until next selection
+            newContent += props.inputContent.substring(element.end, sortedSelections[index + 1].start);
+          }
+        });
+    
+        // End of formatted content
+        if (sortedSelections.length > 0) {
+          newContent += props.inputContent.substring(sortedSelections[sortedSelections.length - 1].end);
+        }
       }
   
       // Dispatch a local state hook to update the textarea with hightlighted text
       setText(newContent);
     };
     processFormat();
-  }, [props]);
+  }, [props.selections, props.inputContent]);
 
   return (
     <div className="InputBox">
-      <div className="InputBox-backdrop">
+      <div className="InputBox-backdrop" ref={highlightsRef}>
         <div className="InputBox-highlights" 
           suppressContentEditableWarning
           dangerouslySetInnerHTML={{ __html: text }}
-          ref={highlightsRef}
+          data-testid="highlightsId"
         />
       </div>
       <textarea className="InputBox-textarea"
@@ -75,13 +80,15 @@ function InputBox(props) {
         ref={inputRef}
         placeholder="<Enter or copy text into this input area>"
         onMouseUp={handleSelection}
+        onScroll={handleScroll}
       />
     </div>
   );
 }
 
 InputBox.propTypes = {
-  inputContent: PropTypes.string
+  inputContent: PropTypes.string,
+  selections: PropTypes.arrayOf(PropTypes.object)
 };
 
 const mapDispatchToProps = (dispatch) => ({

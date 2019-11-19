@@ -19,3 +19,13 @@
 	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 	opacity: 1;
 }
+
+.Button-misc {
+	margin-left: auto;
+}
+
+.Button p {
+	color: white;
+	font-weight: bold;
+	font-size: calc(2px + 2vmin);
+}

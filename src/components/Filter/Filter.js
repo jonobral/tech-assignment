@@ -39,6 +39,10 @@ function Filter(props) {
       props.actions.showSelections(color);
     }
   };
+  
+  const sortSelections = () => {
+    props.actions.sortSelections();
+  }
 
   return (
     <div className="Filter">
@@ -48,6 +52,7 @@ function Filter(props) {
       <p className="Filter-text disable-select">
         {props.text}
       </p>
+      <Button color="gray" location="right" handleClick={() => sortSelections()} text="Sort"/>
     </div>
   );
 }

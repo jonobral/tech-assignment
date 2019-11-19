@@ -1,4 +1,4 @@
-### Tech Assignment
+# Tech Assignment
 
 ## Available Scripts
 

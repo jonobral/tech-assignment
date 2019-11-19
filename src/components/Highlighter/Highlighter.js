@@ -16,7 +16,7 @@ function Highlighter(props) {
       return;
     }
     // Preventing an user to highlight a text that is already selected
-    //TODO
+    //TODO ---
 
     // Get the current selections in textarea component
     const start = props.inputRef.selectionStart;

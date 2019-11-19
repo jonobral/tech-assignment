@@ -1,0 +1,12 @@
+.Filter {
+  display: flex;
+  flex-direction: row;
+  margin: 15px;
+}
+
+.Filter-text {
+  font-size: calc(5px + 2vmin);
+  align-content: center;
+  align-self: center;
+  margin: 10px;
+}

@@ -37,7 +37,11 @@ function Highlighter(props) {
 }
 
 Highlighter.propTypes = {
-	text: PropTypes.string
+  isRedSelected: PropTypes.bool,
+  isYellowSelected: PropTypes.bool,
+  isGreenSelected: PropTypes.bool,
+  inputContent: PropTypes.string,
+  inputRef: PropTypes.object
 };
 
 const mapDispatchToProps = (dispatch) => ({

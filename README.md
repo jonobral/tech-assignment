@@ -29,4 +29,4 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br />
 
 ## How the application works?
-![tech-assignment](https://raw.githubusercontent.com/jonobral/tech-assingment/master/public/tech-assignment.png)
+![tech-assignment](https://raw.githubusercontent.com/jonobral/tech-assignment/master/public/tech-assignment.png)

@@ -18,7 +18,7 @@ beforeEach(() => {
 
 describe('Filter Component', () => {
 
-  it('renders Selected Button component', () => {
+  it('renders Filter component', () => {
     const displayedText = "This text goes next to buttons";
     const colors = ['red', 'yellow', 'green', 'gray'];
     const wrapper = rtl.render(

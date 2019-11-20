@@ -16,6 +16,7 @@ function ResultBox(props) {
         // Finally the app renders all selections made by the user
         let sortedSelections = props.selections.filter(s => props.colors.includes(s.color)).sort((a, b) => (a.start > b.start) ? 1 : -1);
         if (props.sortByColors) {
+          // In case of a different sort, we should replace the current sortedSelections object
           sortedSelections = props.selections.filter(s => props.colors.includes(s.color)).sort((a, b) => (a.colorSeq > b.colorSeq) ? 1 : -1);
         }
         
@@ -23,8 +24,7 @@ function ResultBox(props) {
         let result = '';
         sortedSelections.forEach((element) => {
           result = props.inputContent.substring(element.start, element.end);
-          newContent +=
-          `<span class="ResultBox-highlighted ResultBox-${element.color}">${result === ' ' ? '&nbsp;' : result}</span>`;
+          newContent += `<span class="ResultBox-highlighted ResultBox-${element.color}">${result === ' ' ? '&nbsp;' : result}</span>`;
         });
       }
       // Dispatch a local state hook to update the textarea with hightlighted text

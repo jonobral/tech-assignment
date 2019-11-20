@@ -26,6 +26,7 @@ function InputBox(props) {
 
   const handleScroll = () => {
     var scrollTop = inputRef.current.scrollTop;
+    // Keep highlights effect synchronized in case of scrolling
     highlightsRef.current.scrollTo(0, scrollTop);
   }
   

@@ -18,7 +18,7 @@ beforeEach(() => {
 
 describe('Highlighter Component', () => {
 
-  it('renders Selected Button component', () => {
+  it('renders Highlighter component', () => {
     const displayedText = "Description to indicate user what to do";
     const colors = ['red', 'yellow', 'green', 'gray'];
     const wrapper = rtl.render(
